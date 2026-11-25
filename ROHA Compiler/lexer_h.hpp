@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <bits/stdc++.h>
+#include "lexer.cpp"
 
 enum TokenType;
 class Token;
@@ -12,7 +13,5 @@ std::optional<Token> string_to_token(std::string current_string);
 std::optional<std::vector<Token>> Tokenize(const std::string& filestream);
 
 //declare all tokens here
-Token RETURN;
-Token SEMICOLON;
 
 #endif

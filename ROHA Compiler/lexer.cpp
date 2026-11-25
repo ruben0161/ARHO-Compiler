@@ -16,6 +16,9 @@ class Token {
     //representation of the token as a string 
     std::string repr;
     TokenType type;
+    friend bool operator==(Token &t1, const Token &t2){
+        return (t1.repr == t2.repr);
+    }
 
     Token(std::string repr_param, TokenType type_param) {
         repr = repr_param;
@@ -27,7 +30,6 @@ class Token {
 //Token IF = Token("if", TokenType::KEYWORD);
 //Token FOR = Token("for", TokenType::KEYWORD);
 Token RETURN = Token("return", TokenType::KEYWORD);
-
 Token SEMICOLON = Token(";", TokenType::DELIMITER);
 
 bool isNum (std::string s){
@@ -92,33 +94,33 @@ std::optional<std::vector<Token>> Tokenize(const std::string& filestream) { //fi
     // at this point output_tokens contains every token in the string
 }
 
-int main(int argc, char* argv[]){
-    std::ifstream rohafile;
-    if (argc != 2){
-        std::cout << "Error opening file" << std::endl;
-        return EXIT_FAILURE;
-    }
+// int main(int argc, char* argv[]){
+//     std::ifstream rohafile;
+//     if (argc != 2){
+//         std::cout << "Error opening file" << std::endl;
+//         return EXIT_FAILURE;
+//     }
 
-    rohafile.open(argv[1]);
+//     rohafile.open(argv[1]);
 
-    std::string line;
-    std::string filestream;
+//     std::string line;
+//     std::string filestream;
 
-    while (getline(rohafile, line)){
-        filestream += line;
-    }
+//     while (getline(rohafile, line)){
+//         filestream += line;
+//     }
 
-    rohafile.close();
+//     rohafile.close();
 
-    std::optional<std::vector<Token>> potential_tokens = Tokenize(filestream);
-    if (potential_tokens == std::nullopt) {
-        return EXIT_FAILURE;
-    }
-    std::vector<Token> output_tokens = potential_tokens.value();
+//     std::optional<std::vector<Token>> potential_tokens = Tokenize(filestream);
+//     if (potential_tokens == std::nullopt) {
+//         return EXIT_FAILURE;
+//     }
+//     std::vector<Token> output_tokens = potential_tokens.value();
 
-    std::cout << "Final tokens are: " << std::endl;
-    for (Token token : output_tokens) {
-        std::cout << token.repr << " " << token.type << std::endl;
-    }
-    
-}
+//     std::cout << "Final tokens are: " << std::endl;
+//     for (Token token : output_tokens) {
+//         std::cout << token.repr << " " << token.type << std::endl;
+//     }
+
+// }
